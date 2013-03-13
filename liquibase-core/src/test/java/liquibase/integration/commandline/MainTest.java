@@ -166,6 +166,19 @@ public class MainTest {
     }
 
     @Test
+    public void earConfigureClassLoaderLocation() throws Exception {
+        Main cli = new Main();
+
+        cli.classpath = "src/test/resources/liquibase/integration/commandline/foobar.ear";
+        cli.applyDefaults();
+
+        cli.configureClassLoader();
+
+        URL[] classloaderURLs = ((URLClassLoader) cli.classLoader).getURLs();
+        assertEquals(2, classloaderURLs.length);
+    }
+
+    @Test
     public void propertiesFileWithNoOtherArgs() throws Exception {
         Main cli = new Main();
 

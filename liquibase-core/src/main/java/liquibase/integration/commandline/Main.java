@@ -656,6 +656,7 @@ public class Main {
                             } else if (entry.getName().toLowerCase().endsWith("war")) {
                                 File warFile = extract(earZip, entry);
                                 addWarFileClasspathEntries(warFile, urls);
+                                warFile.deleteOnExit();
                             }
                         }
 
